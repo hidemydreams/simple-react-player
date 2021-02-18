@@ -1,0 +1,29 @@
+.video-item {
+  display: flex;
+  margin-bottom: 10px;
+  cursor: pointer;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding: 5px;
+  transition: 0.2s;
+}
+
+.thumbnail {
+  margin-right: 5px;
+}
+
+.thumbnail img {
+  max-width: 100px;
+  height: auto;
+  border-radius: 5px;
+}
+
+.video-h3 {
+  font-weight: 300;
+  margin: 0;
+  font-size: 12px;
+}
+
+.video-item:hover {
+  background: rgba(255, 255, 255, 0.4);
+}

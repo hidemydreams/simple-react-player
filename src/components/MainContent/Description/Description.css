@@ -1,0 +1,8 @@
+.description {
+  max-width: 640px;
+}
+
+.dislike {
+  display: inline-block;
+  margin-left: 20px;
+}

@@ -15,14 +15,17 @@ export default class Videolist extends Component {
     if (filteredVideos.length < 1) {
       isEmpty = true
     }
+
     return (
       <div className="video-list">
-        {isFiltered ? <Button
-          className="show-all_btn"
-          style={{ color: 'white' }}
-          onClick={() => handleShowAll()}>Show All
+        <div className="info">
+          {isFiltered ? <Button
+            className="show-all_btn"
+            style={{ color: 'white' }}
+            onClick={() => handleShowAll()}>Show All
           </Button> : null}
-        {isEmpty ? <p>There are no videos by your search </p> : null}
+          {isEmpty ? <p>There are no videos by your search </p> : null}
+        </div>
         {filteredVideos.map((video) => {
           return <VideoItem data={filteredVideos} thumbnail={video.thumbnail} url={video.url} name={video.name} key={video.id} handleSetVideo={handleSetVideo} />
         })}

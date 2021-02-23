@@ -5,6 +5,7 @@ import MainLayout from "./components/MainLayout/MainLayout";
 import Videolist from "./components/VideoList/VideoList";
 
 import { data } from "./data";
+import SearchBar from "./components/common/SearchBar/SearchBar";
 
 class App extends React.Component {
   constructor(props) {
@@ -12,8 +13,9 @@ class App extends React.Component {
 
     this.state = {
       pickedVideo: data[0],
-      allVideos: "",
+      searchInputValue: "",
       comments: [],
+      isSearchOpened: false,
     };
   }
 
@@ -27,19 +29,24 @@ class App extends React.Component {
     const findByName = data.find((vid) => vid.name === name);
     this.setState({
       pickedVideo: findByName,
+      searchInputValue: "",
     });
   };
 
   handleInput = (e) => {
     this.setState({
-      allVideos: e.target.value,
+      searchInputValue: e.target.value,
     });
   };
 
   handleShowAll = () => {
     this.setState({
-      allVideos: "",
+      searchInputValue: "",
     });
+  };
+
+  handleSearchBtn = () => {
+    this.setState({ isSearchOpened: !this.state.isSearchOpened });
   };
 
   render() {
@@ -47,17 +54,17 @@ class App extends React.Component {
     let filteredVideos = data.filter((vid) => {
       return vid.name
         .toLowerCase()
-        .includes(this.state.allVideos.toLowerCase());
+        .includes(this.state.searchInputValue.toLowerCase());
     });
-
     return (
       <div className="App">
         <MainLayout>
-          <input
-            onChange={this.handleInput}
-            placeholder="I want to find..."
-            className="input"
-          ></input>
+          <SearchBar
+            isSearchOpened={this.state.isSearchOpened}
+            handleSearchBtn={this.handleSearchBtn}
+            searchInputValue={this.state.searchInputValue}
+            handleInput={this.handleInput}
+          />
           <div className="content-container">
             <Player video={pickedVideo} />
             <Videolist

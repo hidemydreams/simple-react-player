@@ -1,0 +1,50 @@
+.search {
+  display: flex;
+  margin-top: 10px;
+  margin-left: 40px;
+}
+
+.search-bar {
+  position: relative;
+  max-width: 400px;
+  width: 100%;
+}
+
+.input {
+  width: 0;
+  opacity: 0;
+  outline: none;
+  background: rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(13px);
+  -webkit-backdrop-filter: blur(13px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: white;
+  padding: 10px;
+  transition: 0.4s;
+}
+
+.input.open {
+  width: 100%;
+  opacity: 1;
+}
+
+.search-icon {
+  cursor: pointer;
+  font-size: 25px;
+  transition: 0.2s;
+  color: white;
+  margin-right: 10px;
+}
+
+.exit-btn {
+  display: block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+}
+.exit-btn.open {
+  display: none;
+}

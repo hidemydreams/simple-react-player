@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactPlayer from 'react-player/youtube'
 import Description from '../Description/Description';
 import { Button } from '@material-ui/core';
-import { TextField } from '@material-ui/core';
 
 import './Player.css'
 
@@ -20,9 +19,13 @@ class Player extends Component {
   }
 
   handleClick = (comment) => {
-    this.setState({
-      comments: [...this.state.comments, comment]
-    })
+    if (this.state.text) {
+      this.setState({
+        comments: [...this.state.comments, comment],
+        text: ''
+      })
+    }
+
   }
 
   render() {
@@ -37,14 +40,12 @@ class Player extends Component {
         <Description video={video} />
         <div className="comment-section">
           <div className="comment-write">
-            <TextField
-              style={{ width: "100%" }}
-              onChange={this.handleChange}
+            <input className="comment-input" onChange={this.handleChange}
               name="text"
               value={text}
               id="outlined-basic"
               label="Send Comment"
-              variant="outlined" />
+              type="text" />
             <Button
               style={{ color: 'white', width: "100%" }}
               onClick={() => this.handleClick(text)}
@@ -53,12 +54,30 @@ class Player extends Component {
           <div className="comments-block">
             {comments
               ?.map((comment) => {
-                return <p className="comment">{comment}</p>
+                return <Comment key={comment} comment={comment} />
               })}
           </div>
         </div>
       </div >
     );
+  }
+}
+
+class Comment extends Component {
+
+
+  render() {
+    return (
+      <div className="comment">
+        <div className="user-img">
+
+        </div>
+        <div className="comment-content">
+          <p>Username</p>
+          <p>{this.props.comment}</p>
+        </div>
+      </div>
+    )
   }
 }
 
